@@ -15,7 +15,6 @@ import CaseStudy from './components/CaseStudy';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
-import Packages from './components/Packages';
 import Background from './components/Background';
 import Footer from './components/Footer';
 
@@ -34,5 +33,5 @@ export default function App() {
     document.fonts.ready.then(() => { if (active) ScrollTrigger.refresh(); });
     return () => { active = false; };
   }, []);
-  return <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>{!ready && <Preloader />}<a className="skip-link" href="#main">Skip to content</a><Header /><main id="main" tabIndex={-1}><Hero /><About /><Projects /><Skills /><Experience /><Packages /><Background /><Contact /></main><Footer /><CaseStudy /><Cursor /></MotionConfig>;
+  return <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>{!ready && <Preloader />}<a className="skip-link" href="#main">Skip to content</a><Header /><main id="main" tabIndex={-1}><Hero /><About /><Projects /><Skills /><Experience /><Background /><Contact /></main><Footer /><CaseStudy /><Cursor /></MotionConfig>;
 }

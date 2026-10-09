@@ -1,12 +1,9 @@
-// Illustrative technology diagrams use the actual project's published stack.
-// These are labeled overviews, not screenshots or invented product interfaces.
+// Reserve stable image space without downloading a missing file or showing a
+// broken-image icon. Add project.screenshots in content.js when images are ready.
 export default function ProjectArt({ project }) {
-  return <div className={`project-art architecture-art architecture-${project.theme}`} aria-hidden="true">
-    <div className="architecture-sheet">
-      <div className="architecture-top"><span>PA / ENGINEERING</span><span>{project.number}</span></div>
-      <h4>{project.name}</h4><p>{project.type}</p>
-      <div className="architecture-flow">{project.visualNodes.map((node, index) => <div className="architecture-node" key={node}><small>{String(index + 1).padStart(2, '0')}</small><span>{node}</span></div>)}</div>
-      <div className="architecture-bottom">TECHNOLOGY OVERVIEW <span>↗</span></div>
-    </div>
-  </div>;
+  const screenshot = project.screenshots?.[0];
+  const video = project.videos?.[0];
+  if (!screenshot?.src && video?.src) return <div className="project-art project-media project-media-video"><video src={video.src} muted loop autoPlay playsInline preload="metadata" aria-label={video.title} /></div>;
+  if (!screenshot?.src) return <div className="project-art project-media project-media-empty" aria-hidden="true" />;
+  return <div className="project-art project-media"><img src={screenshot.src} alt={screenshot.alt || `${project.name} screenshot`} loading="lazy" width="1440" height="900" /></div>;
 }
